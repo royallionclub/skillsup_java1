@@ -16,5 +16,24 @@
         <property name="password" value="Sq1VeYqKOvv"/>
     </bean>
 
+    <bean id="postFilter" class="ua.dp.skillsup.spring.homework.PostFilter"/>
+
+    <bean id="facebookPostProvider" class="ua.dp.skillsup.spring.homework.PostProvider">
+        <property name="facebookApi" ref="facebookApi"/>
+        <property name="postFilter" ref="postFilter"/>
+        <property name="keyWord" value="dog"/>
+    </bean>
+    <bean id="instagramPostProvider" class="ua.dp.skillsup.spring.homework.PostProvider">
+        <property name="instagramApi" ref="instagramApi"/>
+        <property name="postFilter" ref="postFilter"/>
+        <property name="keyWord" value="dog"/>
+    </bean>
+    <bean id="twitterPostProvider" class="ua.dp.skillsup.spring.homework.PostProvider">
+        <property name="twitterApi" ref="twitterApi"/>
+        <property name="postFilter" ref="postFilter"/>
+        <property name="keyWord" value="dog"/>
+    </bean>
+
+
 
 </beans>
