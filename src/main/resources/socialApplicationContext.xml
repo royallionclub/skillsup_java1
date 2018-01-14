@@ -34,6 +34,10 @@
         <property name="keyWord" value="dog"/>
     </bean>
 
-
+    <bean id="socialServiceApp" class="ua.dp.skillsup.spring.homework.SocialServiceApp">
+        <property name="facebookPostProvider" ref="facebookPostProvider"/>
+        <property name="instagramPostProvider" ref="instagramPostProvider"/>
+        <property name="twitterPostProvider" ref="twitterPostProvider"/>
+    </bean>
 
 </beans>
