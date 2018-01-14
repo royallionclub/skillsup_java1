@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <context:component-scan base-package="ua.dp.skillsup.spring.homework"/>
 
     <bean id="facebookApi" class="ua.dp.skillsup.spring.homework.service.FacebookApi">
         <property name="apiKey" value="1092988854150"/>
@@ -19,25 +23,35 @@
     <bean id="postFilter" class="ua.dp.skillsup.spring.homework.PostFilter"/>
 
     <bean id="facebookPostProvider" class="ua.dp.skillsup.spring.homework.PostProvider">
-        <property name="facebookApi" ref="facebookApi"/>
+        <property name="serviceApi" ref="facebookApi"/>
         <property name="postFilter" ref="postFilter"/>
         <property name="keyWord" value="dog"/>
+
     </bean>
     <bean id="instagramPostProvider" class="ua.dp.skillsup.spring.homework.PostProvider">
-        <property name="instagramApi" ref="instagramApi"/>
+        <property name="serviceApi" ref="instagramApi"/>
         <property name="postFilter" ref="postFilter"/>
         <property name="keyWord" value="dog"/>
     </bean>
     <bean id="twitterPostProvider" class="ua.dp.skillsup.spring.homework.PostProvider">
-        <property name="twitterApi" ref="twitterApi"/>
+        <property name="serviceApi" ref="twitterApi"/>
         <property name="postFilter" ref="postFilter"/>
         <property name="keyWord" value="dog"/>
     </bean>
 
     <bean id="socialServiceApp" class="ua.dp.skillsup.spring.homework.SocialServiceApp">
-        <property name="facebookPostProvider" ref="facebookPostProvider"/>
-        <property name="instagramPostProvider" ref="instagramPostProvider"/>
-        <property name="twitterPostProvider" ref="twitterPostProvider"/>
+        <property name="providers">
+            <list value-type="ua.dp.skillsup.spring.homework.PostProvider">
+                <ref bean="facebookPostProvider"/>
+                <ref bean="instagramPostProvider"/>
+                <ref bean="twitterPostProvider"/>
+            </list>
+        </property>
     </bean>
+
+
+
+
+
 
 </beans>

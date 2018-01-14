@@ -1,7 +1,10 @@
 package ua.dp.skillsup.spring.homework;
 
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 public class PostFilter {
 
