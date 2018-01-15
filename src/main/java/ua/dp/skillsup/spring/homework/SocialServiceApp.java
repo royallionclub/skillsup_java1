@@ -1,15 +1,20 @@
 package ua.dp.skillsup.spring.homework;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 import ua.dp.skillsup.spring.homework.service.FacebookApi;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class SocialServiceApp {
-    List<PostProvider> providers;
 
+    @Autowired
+    List<PostProvider> providers;
 
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("socialApplicationContext.xml");
