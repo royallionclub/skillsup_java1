@@ -16,7 +16,7 @@ public class JdbcTest {
     @Before
     public void setUp() throws Exception {
         Class.forName("org.h2.Driver");
-        conn = DriverManager.getConnection("jdbc:h2:~/test", "sa", "");
+        conn = DriverManager.getConnection("jdbc:h2:mem:", "sa", "");
     }
 
     @After
@@ -27,7 +27,7 @@ public class JdbcTest {
     @Test
     public void testUser() throws Exception {
         Statement statement = conn.createStatement();
-        statement.execute("DROP TABLE IF EXISTS USER;" +
+        statement.execute("" +
                 "CREATE TABLE USER\n" +
                 "(\n" +
                 "    ID BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,\n" +
