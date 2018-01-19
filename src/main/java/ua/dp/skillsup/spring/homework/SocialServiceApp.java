@@ -2,11 +2,11 @@ package ua.dp.skillsup.spring.homework;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
-import ua.dp.skillsup.spring.homework.service.FacebookApi;
 
+
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +22,8 @@ public class SocialServiceApp {
         SocialServiceApp socialServiceApp = (SocialServiceApp) context.getBean("socialServiceApp");
         socialServiceApp.run();
     }
+
+
 
     public void run(){
         List<Post> posts = new ArrayList<>();

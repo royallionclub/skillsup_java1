@@ -25,23 +25,23 @@
         <!--<property name="password" value="Sq1VeYqKOvv"/>-->
     <!--</bean>-->
 
-    <!--<bean id="postFilter" class="ua.dp.skillsup.spring.homework.PostFilter"/>-->
+    <bean id="postFilter" class="ua.dp.skillsup.spring.homework.PostFilter"/>
 
-    <!--<bean id="facebookPostProvider" class="ua.dp.skillsup.spring.homework.PostProvider">-->
-        <!--<property name="serviceApi" ref="facebookApi"/>-->
-        <!--&lt;!&ndash;<property name="postFilter" ref="postFilter"/>&ndash;&gt;-->
-        <!--&lt;!&ndash;<property name="keyWord" value="dog"/>&ndash;&gt;-->
-    <!--</bean>-->
-    <!--<bean id="instagramPostProvider" class="ua.dp.skillsup.spring.homework.PostProvider">-->
-        <!--<property name="serviceApi" ref="instagramApi"/>-->
-        <!--&lt;!&ndash;<property name="postFilter" ref="postFilter"/>&ndash;&gt;-->
-        <!--&lt;!&ndash;<property name="keyWord" value="dog"/>&ndash;&gt;-->
-    <!--</bean>-->
-    <!--<bean id="twitterPostProvider" class="ua.dp.skillsup.spring.homework.PostProvider">-->
-        <!--<property name="serviceApi" ref="twitterApi"/>-->
-        <!--&lt;!&ndash;<property name="postFilter" ref="postFilter"/>&ndash;&gt;-->
-        <!--&lt;!&ndash;<property name="keyWord" value="dog"/>&ndash;&gt;-->
-    <!--</bean>-->
+    <bean id="facebookPostProvider" class="ua.dp.skillsup.spring.homework.PostProvider">
+    <property name="serviceApi" ref="facebookApi"/>
+    <property name="postFilter" ref="postFilter"/>
+    <property name="keyWord" value="${keyWord}"/>
+</bean>
+    <bean id="instagramPostProvider" class="ua.dp.skillsup.spring.homework.PostProvider">
+        <property name="serviceApi" ref="instagramApi"/>
+        <property name="postFilter" ref="postFilter"/>
+        <property name="keyWord" value="${keyWord}"/>
+    </bean>
+    <bean id="twitterPostProvider" class="ua.dp.skillsup.spring.homework.PostProvider">
+        <property name="serviceApi" ref="twitterApi"/>
+        <property name="postFilter" ref="postFilter"/>
+        <property name="keyWord" value="${keyWord}"/>
+    </bean>
 
     <!--<bean id="socialServiceApp" class="ua.dp.skillsup.spring.homework.SocialServiceApp">-->
         <!--<property name="providers">-->
