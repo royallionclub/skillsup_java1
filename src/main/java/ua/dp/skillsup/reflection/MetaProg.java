@@ -42,7 +42,6 @@ public class MetaProg {
         Method foo = clazz.getDeclaredMethod("foo");
         System.out.println(foo.invoke(null));
 
-        Executor.execute("ua.dp.skillsup.reflection");
     }
 
     @Override

@@ -12,14 +12,14 @@ import java.util.Set;
 public class Executor {
 
     public static void execute(String packageName) {
-        Reflections reflections = new Reflections(packageName);
+        Reflections reflections = new Reflections(packageName, new SubTypesScanner(false));
         Set<Class<?>> allClasses = reflections.getSubTypesOf(Object.class);
 
         for (Class clazz : allClasses) {
             for (Method method : clazz.getDeclaredMethods()) {
                 if (method.isAnnotationPresent(Execute.class)) {
                     try {
-                        method.invoke(clazz.newInstance(), "I'm here!");
+                        method.invoke(clazz.newInstance(), parameterMatcher(method));
                     } catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
                         e.printStackTrace();
                     }
@@ -49,6 +49,9 @@ public class Executor {
         return systemParameter;
     }
 
+    public static void main(String[] args) {
+        Executor.execute("ua.dp.skillsup.reflection");
+    }
 
 
 }
