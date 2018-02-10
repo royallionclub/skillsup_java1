@@ -1,14 +1,54 @@
 package ua.dp.skillsup.reflection.reflection_hw;
 
+import org.reflections.Reflections;
+import org.reflections.scanners.SubTypesScanner;
+
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Set;
 
 public class Executor {
 
-    @Execute
-    public static void execute (@Env("PACKAGE_NAME") String packageName) {
-        System.out.println(packageName);
+    public static void execute(String packageName) {
+        Reflections reflections = new Reflections(packageName);
+        Set<Class<?>> allClasses = reflections.getSubTypesOf(Object.class);
+
+        for (Class clazz : allClasses) {
+            for (Method method : clazz.getDeclaredMethods()) {
+                if (method.isAnnotationPresent(Execute.class)) {
+                    try {
+                        method.invoke(clazz.newInstance(), "I'm here!");
+                    } catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
     }
 
-    public static void main(String[] args) {
-        Executor.execute("src");
+    private static String parameterMatcher(Method method)
+    {
+        String systemParameter = "";
+        Annotation annotations[][] = method.getParameterAnnotations();
+
+        for (Annotation annotation[] : annotations)
+        {
+            for (Annotation parameterAnnotation : annotation)
+            {
+                String param;
+                if (parameterAnnotation instanceof Env)
+                {
+                    Env env = (Env) parameterAnnotation;
+                    param = env.value();
+                    systemParameter = System.getenv(param);
+                }
+            }
+        }
+        return systemParameter;
     }
+
+
+
 }

@@ -1,5 +1,7 @@
 package ua.dp.skillsup.reflection;
 
+import ua.dp.skillsup.reflection.reflection_hw.Executor;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -39,6 +41,8 @@ public class MetaProg {
 
         Method foo = clazz.getDeclaredMethod("foo");
         System.out.println(foo.invoke(null));
+
+        Executor.execute("ua.dp.skillsup.reflection");
     }
 
     @Override
